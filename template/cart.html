@@ -57,14 +57,19 @@
         
             <div class=" col-sm-4 col-lg-3">
     
-                     <img src="{{i.product_id.image.url}}"  height=200 width=200 alt="" srcset="">
+                     <img src="{{i.product_id.image.url}}"  height=300 width=200 alt="" srcset="">
                 </div>
                 <div class="col-md-9">
-                  <h3 class="text-secondary">{{i.product_name}}</h3>
+                  <h3 class="text-secondary">{{i.product_id.name}}</h3>
                   <h2>Rs {{i.price}}</h2>
-                  <input type="submit" class=" btn-danger col-md-1 p-1"  name="remove" value="-">
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <input hidden type="number"  name="pk" value={{i.product_id.id}}>
+                    <input type="submit" class=" btn-danger col-md-1 p-1"  name="remove" value="-">
                   <input type="text" name="" class="col-md-1 " id="" value="{{i.quantity}}" disabled>
                   <input type="submit" class=" btn-warning  col-md-1 p-1"  name="add" value="+">
+                  </form>
+                  
         
                   
                

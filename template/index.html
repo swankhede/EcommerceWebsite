@@ -57,7 +57,7 @@
         </form>
         <br>
       </div>
-<!---this is comment-->
+
     <section class="product-section ">
           <div class="row">
             <div class="col-md-3">
@@ -73,7 +73,7 @@
             <div class="product-container row">
              
           {%  for i in products  %}
-        <div class="card col-6 col-sm-4 col-lg-3" style="padding:0">
+        <div class="card col-6 col-sm-4 col-lg-3 border-0" style="padding:0">
                     <div class="card-img align-items-center text-center">
 
                       <a href="{% url 'view_product' i.id %}"><img src="{{i.image.url}}" class="card-img-top  img-responsive border-0" alt="">

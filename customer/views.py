@@ -101,9 +101,32 @@ def add_to_cart(request,pk,quantity):
 def view_cart(request):
  
     cart_obj = cart.objects.filter(user=request.user)
+    print(cart_obj)
     total =0
+    
     for i in cart_obj:
         total=total+i.price
+    
+    if request.POST.get('add'):
+        pk = request.POST.get('pk')
+        new_cart_obj,product = cart.get_cart_product(pk,request.user)
+        new_cart_obj.quantity+=1
+        new_cart_obj.save()
+        new_cart_obj.price=new_cart_obj.quantity*product.price
+        new_cart_obj.save()
+                    
+       
+                    
+            
+    if request.POST.get('remove'):
+        pk = request.POST.get('pk')
+        new_cart_obj,product = cart.get_cart_product(pk,request.user)
+        new_cart_obj.quantity-=1
+        new_cart_obj.save()
+        new_cart_obj.price=new_cart_obj.quantity*product.price
+        new_cart_obj.save()
+        cart.check_cart(new_cart_obj.quantity,product.name)
+    
     return render(request,'cart.html',context={'cart':cart_obj,'total':total})
 
 

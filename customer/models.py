@@ -10,6 +10,7 @@ class cart(models.Model):
     quantity = models.IntegerField()
     price = models.IntegerField()
     product_id = models.ForeignKey(products,on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.product_name
     
@@ -17,5 +18,11 @@ class cart(models.Model):
     def check_cart(quantity,product_name):
         if quantity<=0:
             cart.objects.filter(product_name=product_name).delete()
+    
+    @staticmethod
+    def get_cart_product(product_pk,user):
+        product=products.objects.get(pk=product_pk)
+        new_cart_obj=cart.objects.get(user=user,product_name=product.name)
+        return new_cart_obj,product
             
 
