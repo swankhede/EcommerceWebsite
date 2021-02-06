@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/cce32a89d0.js" crossorigin="anonymous"></script>    
+<script src="https://kit.fontawesome.com/cce32a89d0.js" crossorigin="anonymous"></script>    
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Home</title>
+</head>
+<body class="bg-light">
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" href="#">iStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+    
+        <br>
+            <div class="container  justify-content-md-center ">
+        
+      <div class="alert-danger">{{error}}</div>
+    
+      </div>
+              <div class="container  justify-content-md-center ">
+              {% for message in messages %}
+      <div class="alert-info">{{message}}</div>
+      {% endfor %}
+      </div>
+      
+      <div class="container mt-5 form-container col-md-6" style="overflow: hidden;">
+
+<div class="row">
+
+<div class="col-md-6">
+  <img class="img-fliud" src="https://blush.design/api/download?shareUri=H_atFkh6A&s=0.2~f6cbc3&w=800&h=800&fm=png" alt="" srcset="">
+        </div>
+        <div class="col-md-6 bg-light">
+    
+          <h1>Login</h1>
+          <form action="" method="POST">
+            {% csrf_token %}
+        
+        <div class="row">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control"  id="exampleInputText" name="username" placeholder="Username">
+
+           
+          
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Password</label>
+      
+            <input type="password" class="form-control" style="font-size: 25px;" id="exampleInputText" name="password" placeholder="password">
+
+          </div>
+ 
+        
+          <small>Don't have account? <a href="{% url 'register' %}">Signup</a></small>
+          <input type="submit" class="btn btn-primary col-md-12" style="margin-top: 7vh;" name="submit">
+ 
+      
+      
+        </div>
+        
+            
+           
+  
+      </form> 
+  
+  </div>
+</div>
+  </div>
+</div>
+
+</body>
+   
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>    
+</body>
+</html>

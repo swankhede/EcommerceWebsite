@@ -1,0 +1,136 @@
+
+.view-btn{
+    border-radius: 30px;
+    background-color: black;
+    color:white;
+}
+.view-btn:hover{
+    color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+.navbar-brand{
+    font-weight: bolder !important;
+}
+.header .img-fluid{
+    animation-name:example;
+   margin-right: 5%;
+    animation-duration: 1000ms;
+    float: right;
+}
+.hero-div{
+    margin:6%;
+}
+.know-btn{
+    border-radius: 30px;
+background: transparent;
+    color:black;
+    border: black 1px solid;
+}
+.deal-section{
+    background-color: rgb(234, 234, 241);
+ 
+}
+.deal-section .img-fluid{
+    float: right;
+    margin-right:30%;
+}
+
+
+.product-container{
+    overflow-x: hidden;
+    overflow-y: scroll; 
+    height:80%;
+    
+}
+.product-section .img-fluid{
+    float: right;
+  
+}
+.info-div{
+    margin-top: 5%;
+    margin-left:10%;
+}
+@keyframes example {
+    from {opacity: 10%;}
+    to {opacity: 100%;}
+  }
+
+.img-div{
+    height: 200px;
+    overflow: hidden;
+}
+.deal-section footer{
+    justify-content: center;
+    color:white
+}
+.search-bar{
+    background-color: rgb(240, 240, 240);
+    border-radius: 0px,0px,0px,0px;
+    border: 0;
+
+   
+}
+.search-btn{
+   
+
+  display: block;
+  color:black;
+
+
+ 
+}
+.product-section{
+    margin: 1%;
+}
+.card{
+    height: 20rem;
+}
+.card-img{
+    height: 50%;
+}
+.card-img-top{
+    height: 100%;
+    width: 56%;
+}
+
+.card-body {
+ text-align: center;
+ text:grey;   
+}
+.product-section .know-btn{
+    border-radius: 10px;
+    
+}
+.product-section .know-btn:hover{
+    background-color: black;
+    color:white;
+
+}
+
+
+.form-container{
+    background-color:white;
+    border-radius: 10px;
+}
+
+.product-details-container img
+{
+    width: 100%;
+}
+
+.product-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
+.product-container {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
