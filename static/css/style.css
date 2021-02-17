@@ -1,4 +1,7 @@
-
+*{
+    outline: none !important;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
 .view-btn{
     border-radius: 30px;
     background-color: black;
@@ -16,7 +19,19 @@ html {
   }
 
 .navbar-brand{
-    font-weight: bolder !important;
+    color:#7161A2 !important;
+    
+    font-weight:bolder !important;
+}
+.btn-warning:hover{
+    background-color: #4f4177 !important;
+    color:aliceblue;
+    
+}
+.btn-warning{
+    border: 0 !important;
+    color:white;
+    background-color: #7161A2 !important;
 }
 .header .img-fluid{
     animation-name:example;
@@ -46,9 +61,18 @@ background: transparent;
 .product-container{
     overflow-x: hidden;
     overflow-y: scroll; 
-    height:80%;
-    
+   
 }
+
+.payment-summary{
+    height: 50%;
+}
+
+.product-container{
+    height:80%;
+}
+
+
 .product-section .img-fluid{
     float: right;
   
@@ -74,8 +98,6 @@ background: transparent;
     background-color: rgb(240, 240, 240);
     border-radius: 0px,0px,0px,0px;
     border: 0;
-
-   
 }
 .search-btn{
    
@@ -108,6 +130,7 @@ background: transparent;
     border-radius: 10px;
     
 }
+
 .product-section .know-btn:hover{
     background-color: black;
     color:white;
@@ -125,12 +148,81 @@ background: transparent;
     width: 100%;
 }
 
-.product-container::-webkit-scrollbar {
+.product-container::-webkit-scrollbar{
     display: none;
   }
-  
+ 
   
 .product-container {
     -ms-overflow-style: none; 
     scrollbar-width: none; 
+  }
+.responsive-filter, .mobile-navbar,.navbtn{
+    display: none;
+}
+.mobile-nav{
+
+    display: none;
+    width: 100%;
+
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: #f1f1f1;
+    margin-top: 20%;
+  
+}
+.cart-btn{
+    margin-left: 1%;
+    border-radius: 5px;
+    color:white;
+    
+}
+
+.buybtn{
+    background-color: #7161A2;
+    color:#f1f1f1;
+    border-radius: 5px;
+    outline: none;
+}
+
+.modal-dialog {
+
+    width: 90%;
+  }
+  .modal-content {
+    height: 100%;
+    width: 100%;
+  }
+
+
+
+
+@media only screen and (max-width: 800px) {
+    body {
+      background-color: black;
+    }
+    .desktop-filter{
+        display: none;
+    }
+    .responsive-filter{
+        display: inline-flex;
+    }
+   
+     
+   
+    .navbtn{
+        display: block;
+        border: 0;
+        background: none;
+        color:#4f4177;
+    }
+    .product-details-container .cart-btn{
+        margin-top: 1%;
+    }
+   
+    .search-bar{
+        margin-left: -4%;
+    }
+   
+    
   }

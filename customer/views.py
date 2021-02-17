@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponse,HttpResponseRedirect
 from .forms import CreateUserForm
 from django.urls import reverse
-from .models import cart
+from .models import cart,Orders
 from django.contrib.auth.decorators import login_required
 from istore.models import products
 from django.contrib.auth import authenticate,login,logout
@@ -99,11 +99,12 @@ def add_to_cart(request,pk,quantity):
 
 @login_required(login_url="login_view")
 def view_cart(request):
+    
  
     cart_obj = cart.objects.filter(user=request.user)
-    print(cart_obj)
+ 
     total =0
-    
+
     for i in cart_obj:
         total=total+i.price
     
@@ -114,6 +115,7 @@ def view_cart(request):
         new_cart_obj.save()
         new_cart_obj.price=new_cart_obj.quantity*product.price
         new_cart_obj.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
                     
        
                     
@@ -126,8 +128,85 @@ def view_cart(request):
         new_cart_obj.price=new_cart_obj.quantity*product.price
         new_cart_obj.save()
         cart.check_cart(new_cart_obj.quantity,product.name)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    
+    print(request.GET.get('delete'))
+    if request.GET.get('delete'):
+        name = request.GET.get('delete')
+        product = cart.objects.filter(product_name=name,user=request.user)
+        product.delete()
+        print("product:",product)
+     
+
+    
+    if request.POST.get('phone') and request.POST.get('address'):
+        cart_obj = cart.objects.filter(user=request.user)
+        
+        for i in cart_obj:
+            quantity=i.quantity
+            product=i.product_id
+            price=i.price
+            
+            address= request.POST.get('address')
+            contact_no=request.POST.get('phone')  
+            
+            result=place_order(request.user,quantity,product,price,address,contact_no) 
+        if result:
+            cart_obj.delete()                    
+            messages.success(request,"Order has been placed successfully")
+        return render(request,'cart.html',context={'cart':cart_obj,'total':total})
+  
+   
     
     return render(request,'cart.html',context={'cart':cart_obj,'total':total})
+
+
+
+
+def place_order(user,quantity,product,price,address,contact_no):
+    order = Orders(         user=user,
+                            quantity=quantity,
+                            price=price,
+                            product=product,
+                            address= address,
+                            contact_no=contact_no  
+                            ) 
+    order.save()
+    return True
+
+def buy_product(request,pk):
+    print(pk)
+    
+    product = products.objects.get(pk=pk)
+    if request.method=='POST':
+        product=product
+        quantity=request.POST.get('quantity')
+        price=request.POST.get('price')
+        address= request.POST.get('address')
+        contact_no=request.POST.get('phone')  
+            
+        result = place_order(request.user,quantity,product,price,address,contact_no) 
+        if result:
+            messages.success(request,'Order has been placed succesfully')
+        
+
+    return render(request,'payment.html',context={'product':product,'total':product.price}) 
+
+
+@login_required(login_url='login_view')
+def view_orders(request):
+    order = Orders.objects.filter(user=request.user)
+    print(order)
+    total=0
+    for i in order:
+        total=total+i.price
+    return render(request,'order.html',context={'orders':order,'total':total})
+
+
+
+
+
+
 
 
     

@@ -29,8 +29,8 @@ def index(request):
             context['products']=all_products
     
     if request.method=="POST":
-        name = request.POST['search']
-        print(name)
+        name = request.POST.get('search')
+
         product_obj = products.get_product_by_name(input_name=name)
         context['products']=product_obj
 
@@ -80,7 +80,7 @@ def view_product(request,pk):
   
        
 
-
+    print("rendering...")
     return render(request,'details.html',context=context)
 
 
@@ -88,5 +88,7 @@ def view_product(request,pk):
 def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
+
+
 
 

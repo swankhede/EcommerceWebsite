@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from istore.models import products
+import datetime
 
 
 # Create your models here.
@@ -24,5 +24,21 @@ class cart(models.Model):
         product=products.objects.get(pk=product_pk)
         new_cart_obj=cart.objects.get(user=user,product_name=product.name)
         return new_cart_obj,product
+
+
+class Orders(models.Model):
+    product = models.ForeignKey(products,on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    user = models.CharField(max_length=256)
+    date = models.DateTimeField(default=datetime.datetime.now())
+    address = models.CharField(max_length=256)
+    contact_no = models.IntegerField(max_length=10)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.user
+    
+
+
             
 
